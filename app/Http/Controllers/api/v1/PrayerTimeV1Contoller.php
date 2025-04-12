@@ -23,10 +23,19 @@ class PrayerTimeV1Contoller extends BaseQueryController
      *
      * @urlParam zone string required The JAKIM zone code. See all zones using `/api/zones` endpoint. Example: SGR01
      *
+     * @queryParam year int The year. Defaults to current year. Example: 2024
+     * @queryParam month int The month number. 1 => January, 2 => February etc. Defaults to current month. Example: 4
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function fetchMonth(string $zone, Request $request)
     {
+        // Query parameters
+        $request->validate([
+            'year' => 'integer|digits:4|min:2020',
+            'month' => 'integer|min:1',
+        ]);
+
         $zone = strtoupper($zone);
         $year = $request->input('year', date('Y'));
         $month = $request->input('month', date('m'));
@@ -55,11 +64,21 @@ class PrayerTimeV1Contoller extends BaseQueryController
      * @urlParam zone string required The JAKIM zone code. See all zones using `/api/zones` endpoint. Example: SGR01
      * @urlParam day int required Tne day of the month. Example: 1
      *
+     * @queryParam year int The year. Defaults to current year. Example: 2024
+     * @queryParam month int The month number. 1 => January, 2 => February etc. Defaults to current month. Example: 4
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function fetchDay(string $zone, int $day, Request $request)
     {
         $zone = strtoupper($zone);
+
+        // Query parameters
+        $request->validate([
+            'year' => 'integer|digits:4|min:2020',
+            'month' => 'integer|min:1',
+        ]);
+
         $year = $request->input('year', date('Y'));
         $month = $request->input('month', date('m'));
 

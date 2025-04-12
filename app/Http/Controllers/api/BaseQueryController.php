@@ -24,6 +24,10 @@ class BaseQueryController extends Controller
             ->orderBy('date', 'asc')
             ->get();
 
+        if ($prayerTimes->isEmpty()) {
+            throw new \Exception("No data found for zone: {$zone} for {$durationContext->format('M/Y')}");
+        }
+
         return $prayerTimes;
     }
 

@@ -23,17 +23,30 @@ class PrayerTimeContoller extends BaseQueryController
      * @queryParam year int The year. Defaults to current year. Example: 2025
      * @queryParam month int The month number. 1 => January, 2 => February etc. Defaults to current month. Example: 6
      *
-     * @response status=404 scenario="Data not found" {"error": "No data found for zone: XXXXX for MMM/YYYY"}
-     * @response status=500 scenario="Internal server error." {"error": "Server error"}
+     * @response status=404 scenario="Data not found" {"message": "No data found for zone: XXXXX for MMM/YYYY"}
+     * @response status=500 scenario="Internal server error." {"message": "Server error"}
      */
     public function fetchMonth(string $zone, Request $request)
     {
+        // Query parameters
+        $request->validate([
+            'year' => 'integer|digits:4|min:2020',
+            'month' => 'integer|min:1',
+        ]);
+
+        $year = $request->get('year', date('Y'));
+        $month = $request->get('month', date('m'));
+
         $zone = strtoupper($zone);
 
-        $year = $request->input('year', date('Y'));
-        $month = $request->input('month', date('m'));
+        try {
+            $prayerTimes = $this->queryPrayerTime($zone, $year, $month);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage(),
+            ], 404);
+        }
 
-        $prayerTimes = $this->queryPrayerTime($zone, $year, $month);
         $prayerTimes = $this->mapPrayerTimes($prayerTimes);
 
         $data = [
@@ -59,19 +72,31 @@ class PrayerTimeContoller extends BaseQueryController
      * @queryParam year int The year. Defaults to current year. Example: 2025
      * @queryParam month int The month number. 1 => January, 2 => February etc. Defaults to current month. Example: 6
      *
-     * @response status=404 scenario="Data not found" {"error": "No data found for zone: XXXXX for MMM/YYYY"}
-     * @response status=500 scenario="Internal server error." {"error": "Server error"}
+     * @response status=404 scenario="Data not found" {"message": "No data found for zone: XXXXX for MMM/YYYY"}
+     * @response status=500 scenario="Internal server error." {"message": "Server error"}
      */
     public function fetchMonthLocationByGps(float $lat, float $long, Request $request)
     {
-        $year = $request->input('year', date('Y'));
-        $month = $request->input('month', date('m'));
+        // Query parameters
+        $request->validate([
+            'year' => 'integer|digits:4|min:2020',
+            'month' => 'integer|min:1',
+        ]);
+
+        $year = $request->get('year', date('Y'));
+        $month = $request->get('month', date('m'));
 
         // Zone detection
         $zoneObject = $this->detectZoneFromCoordindate($lat, $long);
         $zone = $zoneObject['zone'];
 
-        $prayerTimes = $this->queryPrayerTime($zone, $year, $month);
+        try {
+            $prayerTimes = $this->queryPrayerTime($zone, $year, $month);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage(),
+            ], 404);
+        }
         $prayerTimes = $this->mapPrayerTimes($prayerTimes);
 
         $data = [
