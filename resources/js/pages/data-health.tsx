@@ -56,7 +56,7 @@ export default function DataHealth({
     
     // Update the URL when year or zone changes
     useEffect(() => {
-        router.visit(`/data-health?zone=${zone}&year=${year}`, {
+        router.visit(`/health?zone=${zone}&year=${year}`, {
             preserveState: true,
             replace: true,
             only: ['monthsAvailability', 'selectedZone', 'selectedYear'],
