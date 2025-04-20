@@ -9,6 +9,24 @@
     <title>Jadual Waktu Solat</title>
 
     <style>
+        .header-container {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .title {
+            display: table-cell;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        .month-year {
+            display: table-cell;
+            text-align: right;
+            vertical-align: middle;
+        }
+
         table,
         th,
         td {
@@ -40,6 +58,8 @@
 
         body {
             margin: 10px 10px 10px 10px !important;
+            font-family: Arial, Helvetica, sans-serif;
+            font-optical-sizing: auto;
         }
     </style>
 
@@ -65,7 +85,15 @@
         use Carbon\Carbon;
         $monthName = Carbon::create()->month(intval($month))->locale('ms')->translatedFormat('F');
     @endphp
-    <h2>{{ $title }} : {{ $zone }} ({{ $monthName }}, {{ $year }})</h2>
+    <div class="header-container">
+        <h2 class="title">{{ $title }}</h2>
+        <h2 class="month-year">{{ $monthName }} {{ $year }}</h2>
+    </div>
+    <div style="font-style: italic; padding: 6px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+        <span style="background-color: yellow; padding: 2px 4px; border-radius: 2px;">
+            {{ $zoneDetails->jakim_code }}
+        </span>{{ $zoneDetails->daerah }}
+    </div>
 
     <table class="table table-bordered table-sm">
         <thead class="table-dark">
@@ -97,9 +125,25 @@
     @if ($orientation != 'landscape')
         <br>
     @endif
-    <footer>
-        <small style="color: #888;">Dijana pada {{ now()->format('d/m/Y H:i:s') }}</small>
-    </footer>
+    <table style="width: 100%; border: none; padding-top: 5.3px;">
+        <tr style="border: none;">
+            <td style="text-align: left; border: none; padding: 0;">
+                <span style="color: #555; font-size: 12px;">Dijana pada {{ now()->format('d/m/Y H:i:s') }}
+                </span>
+            </td>
+            <td style="text-align: right; border: none; padding: 0;">
+                <a href="https://waktusolat.app"
+                    style="text-decoration: none; color: #555; font-size: 12px; display: inline-block;">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAhCAYAAAC4JqlRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAANiSURBVHgBvVe9bhNBEP527UgJKCJ0dBxPgHmCGBAKVISSKuYF4rvGcYRQ7AKS0Jz9BDhPQNIRCYRdQZeko+NKSqcJ4ce3zOydMefb27tEMp8U7+Z2dmZ2ZnZmVqAotvwlzKMCiMcQPMKhcQlKtNCsd3FJlHMpIsEupKhDkcAxBAk+C7tou8ME/bbvoER0De8Yu901bNT3bOyFbRG7vkskWwnBQAApa2isD1L0LBziLebVXfwUH2lfhRSt2ZQwW4BPvUCMFKpTKwEUMW+sB8Z9Uq7R+hCeN8Trbo/mFfwOT2BBCaZTzIlPNKukBZDwpvclixnurwjtmnsrpyT8gLifYJNcYYFMCRdkOg6waTDjhp0ZCevTb5/ixSf6r/iFXCRjYKfDwqsGugBN9xZsYLddEW/IbauJfeyyTS/I2jaxwLbfyhAend4GttyCOJoSznBo8xFe+hW7ApHp17KIEIYD2CDoppjcptfoBklyq74hWQrYGRzbTEiMq/Rbg1VBvsaURzIVyDI9IyQ/2iApMxZDzbidkg37zUG2AHvkK1RQBGwFDtSUAhDL+F9YnLs2/amce4JQLVnXldrTVgr1f05kMbWqixRUh9bb2v9S7Ju2l3VlUxYBAnYFJIak5DjdntCcR6qO6jqN7VjLrv5+Fp6mFVA5AmwBqnnT6UQOzRiLZU50ieopC2xz4qs2E0jSfphPJWcWqJJckK9AqFzTFcpAT/cAAp0ih+MYOCZCx0rFgbhAFQ54hjzhTXdMs0euO4irayYkSqKPYqjhFXdIFoxUsjfk8sypPAtUACVG4QGKgus893lZeG7oF7JczNVXiJsyLjR9FIVSvbh0Xw4cS9t+TxdAKXvlmGmbPlQLM+HNO51l2pcXE0mMRlWKpRai2hNwYxvlgXErdTFUddslChYjBlvvb+ETOp4mLRk3DFJ3NUWvmwlB/AfNR5IwEz9FV3TT9Xg66Yo/HA6pm/1Bp3qIy4OFOYheTTdonIdJyXP1FIPD86QCkRKf8eARz6qYDaIm9YX3bfwh/S54/24wIyWMHbK5GG3U6VaoJ0BOO1YU7PPv6o6pt7S/DaPA5EepPQNmgx4psmV8RxZS4F9F2CWRMvZrxwVIYZ+TjE3whPyi4Ex2tXSb7FpJvZoFPUTznm9T+AM5WCC2hyMHXgAAAABJRU5ErkJggg=="
+                        alt="Logo"
+                        style="height: 14px; width: auto; vertical-align: middle; margin-right: 4px; display: inline-block;">
+                    <span style="vertical-align: middle; display: inline-block; font-weight: 700;">Waktu
+                        Solat
+                        Malaysia</span>
+                </a>
+            </td>
+        </tr>
+    </table>
 </body>
 
 </html>
