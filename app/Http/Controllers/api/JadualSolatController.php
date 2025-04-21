@@ -24,6 +24,7 @@ class JadualSolatController extends BaseQueryController
      * @queryParam year int The year. Defaults to current year. Example: 2025
      * @queryParam month int The month number. 1 => January, 2 => February etc. Defaults to current month. Example: 6
      *
+     * @response <<binary>> The PDF file
      * @response status=404 scenario="Data not found" {"message": "No data found for zone: XXXXX for MMM/YYYY"}
      * @response status=500 scenario="Internal server error." {"message": "Server error"}
      */
