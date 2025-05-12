@@ -6,7 +6,7 @@ import Footer from '@/components/footer';
 export default function Home() {
   return (
     <>
-      <Head title="Waktu Solat API">
+      <Head title="Home">
         <meta
           name="description"
           content="Easily integrate Waktu Solat API into your applications for accurate prayer times and prayer zone detection. Simplify your development process with our reliable Islamic prayer time solution."
