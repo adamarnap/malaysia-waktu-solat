@@ -33,7 +33,7 @@ return [
             // Because the api roite doesn't start with "api", so the prefixes value about is somewhat useless. Hence,
             // we need to declare manually in here which route that scribe will looks for when generating API docs.
             'include' => [
-                'zones/*', 'v2/*', 'solat/*', 'jadual_solat/*'
+                'zones', 'zones/*', 'v2/*', 'solat', 'solat/*', 'jadual_solat', 'jadual_solat/*'
             ],
 
             // Exclude these routes even if they matched the rules above.
