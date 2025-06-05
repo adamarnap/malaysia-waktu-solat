@@ -8,6 +8,8 @@ Note that this service is **not affiliated** with JAKIM nor endorsed by them in 
 
 ## Getting Started
 
+### Bare Metal
+
 To get started, clone the repository. Then, install Composer & Node dependencies:
 
 ```bash
@@ -59,6 +61,19 @@ node node-api/geojson-helper/server.js
 ```
 
 You can now access the application at `http://localhost:8000`. The api docs will be available at `http://localhost:8000/docs`.
+
+### Docker
+
+For the first time, run the following commands:
+
+- Clone and navigate into the project.
+- `docker compose up -d --build`
+- `docker compose exec php bash`
+- `composer setup`
+
+From the second time onwards
+
+- `docker compose up -d`
 
 ## Architecture
 
