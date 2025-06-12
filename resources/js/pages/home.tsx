@@ -19,13 +19,18 @@ export default function Home() {
           property="og:image"
           content="https://mpt-server.vercel.app/metaimage.png"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="MPT API" />
+        <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      
+
       <TopBanner>
         <strong>Latest:</strong> Data for new zone: <strong>PHG07</strong> is now available!
       </TopBanner>
-      
+
       <main className="flex items-center justify-center min-h-svh flex-col relative overflow-hidden">
         {/* Subtle glowing object */}
         <div className="hidden dark:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-pink-500/20 rounded-full blur-[100px] opacity-50"></div>
