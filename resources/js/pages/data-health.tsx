@@ -80,6 +80,7 @@ export default function DataHealth({
                 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
                 <meta name="apple-mobile-web-app-title" content="MPT API" />
                 <link rel="manifest" href="/site.webmanifest" />
+                <script defer src="https://umami.iqfareez.com/script.js" data-website-id="11df7d3a-fb7e-4bbd-aacb-222515ea7b32"></script>
             </Head>
             <div className="flex flex-col gap-6 p-8 pt-12 max-w-7xl mx-auto">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

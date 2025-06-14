@@ -25,6 +25,7 @@ export default function Home() {
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="MPT API" />
         <link rel="manifest" href="/site.webmanifest" />
+        <script defer src="https://umami.iqfareez.com/script.js" data-website-id="11df7d3a-fb7e-4bbd-aacb-222515ea7b32"></script>
       </Head>
 
       <TopBanner>
