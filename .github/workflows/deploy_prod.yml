@@ -25,16 +25,16 @@ jobs:
             #!/bin/sh
             # This will run common commands to deploy a latest commit from remote
             # This script is intended for subsequent deploy of the applications. For 
-            # first deploy, consult this project's README.md (TODO).
+            # first deploy, consult this project's wiki.
             set -e
 
-            cd htdocs/api-x.waktusolat.app
+            cd htdocs/api.waktusolat.app
 
             git pull
             composer install
 
             # Restart node-api subserver
-            pm2 restart geojson-helper
+            pm2 restart geo-resolver
 
             # Optimization https://laravel.com/docs/11.x/deployment#optimization
             php artisan optimize:clear 
