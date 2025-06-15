@@ -339,6 +339,10 @@ Make sure you have already added the DNS record as shown in [Step 2](#2-configur
 
 Now, your application should have a trusted certificate installed.
 
+![image](https://github.com/user-attachments/assets/8cad737a-68d5-4f4c-8487-676d72b96ff0)
+
+And the browser warning is gone.
+
 ![image](https://github.com/user-attachments/assets/dea11ab2-6a55-41d8-b358-9b7497634801)
 
 ### 5.2. Add a User
