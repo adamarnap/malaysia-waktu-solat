@@ -11,6 +11,7 @@ class PrayerTimeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     * php artisan db:seed --class=PrayerTimeSeeder
      *
      * @return void
      */
@@ -34,6 +35,9 @@ class PrayerTimeSeeder extends Seeder
 
         $records = $csv->getRecords();
         $count = 0;
+        $batchSize = 1000; // Process in batches of 1000 records
+        $batch = [];
+        $now = now()->format('Y-m-d H:i:s'); // Cache the timestamp
 
         // Start transaction for better performance
         DB::beginTransaction();
@@ -52,7 +56,7 @@ class PrayerTimeSeeder extends Seeder
                 $maghrib = $this->timestampToTimeString($record['maghrib']);
                 $isha = $this->timestampToTimeString($record['isyak']);
 
-                DB::table('prayer_times')->insert([
+                $batch[] = [
                     'date' => $date,
                     'location_code' => $record['zone'],
                     'hijri' => $hijriDate,
@@ -62,16 +66,23 @@ class PrayerTimeSeeder extends Seeder
                     'asr' => $asr,
                     'maghrib' => $maghrib,
                     'isha' => $isha,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ];
 
                 $count++;
 
-                // Output progress every 1000 records
-                if ($count % 1000 === 0) {
+                // Insert batch when it reaches the batch size
+                if (count($batch) >= $batchSize) {
+                    DB::table('prayer_times')->insert($batch);
+                    $batch = []; // Reset batch
                     $this->command->info("Processed $count records...");
                 }
+            }
+
+            // Insert any remaining records in the batch
+            if (! empty($batch)) {
+                DB::table('prayer_times')->insert($batch);
             }
 
             DB::commit();
@@ -79,6 +90,7 @@ class PrayerTimeSeeder extends Seeder
 
         } catch (\Exception $e) {
             DB::rollBack();
+
             $this->command->error('Error seeding prayer times: '.$e->getMessage());
             $this->command->error('Line: '.$e->getLine());
             $this->command->error('File: '.$e->getFile());
