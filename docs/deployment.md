@@ -182,7 +182,7 @@ Note the `.` at the end of the command, which indicates that we want to clone th
 
 ### 4.2. Start the Subserver
 
-As stated in the project's README, there is a Node.js application used to process GeoJSON data. This application is located in the `node-api/geojson-helper` directory. Some endpoints in the main application (the Laravel app) will call this subserver endpoint to retrieve information.
+As stated in the project's README, there is a Node.js application used to process GeoJSON data. This application is located in the `node-api/geojson-helper` directory. Some endpoints in the main application (the Laravel app) will call this 'subserver' endpoint to retrieve information.
 
 Navigate to the `node-api/geojson-helper` directory:
 
@@ -207,7 +207,7 @@ npm install pm2@latest -g
 Start the subserver using `pm2`:
 
 ```bash
-pm2 start node-api/geojson-helper/server.js --name geo-resolver -- start
+pm2 start node-api/geojson-helper/server.js --name geo-resolver
 ```
 
 ![image](https://github.com/user-attachments/assets/624a6765-8d0f-4917-8e0c-546aec518cce)
