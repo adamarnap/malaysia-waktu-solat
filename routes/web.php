@@ -8,6 +8,10 @@ Route::get('/', function () {
     return Inertia::render('home');
 })->name('home');
 
+Route::get('/about', function () {
+    return Inertia::render('about');
+})->name('about');
+
 Route::get('/health', [DataHealthController::class, 'index'])->name('data-health');
 
 Route::middleware(['auth', 'verified'])->group(function () {
