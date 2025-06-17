@@ -74,12 +74,12 @@ export default function About() {
                                             berubah tanpa sebarang pemberitahuan. Kami berusaha sedaya upaya kami untuk mengadaptasi supaya qualiti
                                             data dapat dikekalkan sepanjang masa. Untuk maklumat teknikal, sila lawati repository kami di{' '}
                                             <a
-                                                href="https://github.com/mptwaktusolat/api-waktusolat"
+                                                href="https://github.com/mptwaktusolat/api-waktusolat-x"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="text-pink-500 underline hover:text-pink-400 dark:text-pink-300 dark:hover:text-pink-200"
                                             >
-                                                https://github.com/mptwaktusolat/api-waktusolat
+                                                https://github.com/mptwaktusolat/api-waktusolat-x
                                             </a>
                                         </p>
                                     </div>
@@ -123,12 +123,12 @@ export default function About() {
                                             it can change without prior notice. Hence, we try our best to adapt for every new changes with the API to
                                             keep the data remains up to date every year. For more technical details, visit our repository at{' '}
                                             <a
-                                                href="https://github.com/mptwaktusolat/api-waktusolat"
+                                                href="https://github.com/mptwaktusolat/api-waktusolat-x"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="text-pink-500 underline hover:text-pink-400 dark:text-pink-300 dark:hover:text-pink-200"
                                             >
-                                                https://github.com/mptwaktusolat/api-waktusolat
+                                                https://github.com/mptwaktusolat/api-waktusolat-x
                                             </a>
                                         </p>
                                     </div>
