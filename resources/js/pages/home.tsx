@@ -5,7 +5,7 @@ import Footer from '@/components/footer';
 
 export default function Home() {
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Head title="Home">
         <meta
           name="description"
@@ -32,7 +32,7 @@ export default function Home() {
         <strong>Latest:</strong> Data for new zone: <strong>PHG07</strong> is now available!
       </TopBanner>
 
-      <main className="flex items-center justify-center min-h-svh flex-col relative overflow-hidden">
+      <main className="flex items-center justify-center flex-1 flex-col relative overflow-hidden">
         {/* Subtle glowing object */}
         <div className="hidden dark:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-pink-500/20 rounded-full blur-[100px] opacity-50"></div>
 
@@ -86,6 +86,6 @@ export default function Home() {
         </section>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }

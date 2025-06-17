@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <footer className="flex flex-col sm:flex-row fixed bottom-0 min-w-full items-center h-auto sm:h-16 px-4 border-t md:px-6 mt-auto dark:border-gray-800 bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm py-4 sm:py-0">
+        <footer className="flex flex-col sm:flex-row w-full items-center h-auto sm:h-16 px-4 border-t md:px-6 mt-auto dark:border-gray-800 bg-white dark:bg-gray-950 py-4 sm:py-0">
             <p className="text-sm text-gray-500 dark:text-gray-400">
                 © 2025{" "}
                 <a
