@@ -205,7 +205,7 @@ export default function About() {
 
                             {/* GitHub Card */}
                             <a
-                                href="https://github.com/mptwaktusolat/mpt-server"
+                                href="https://github.com/mptwaktusolat/api-waktusolat-x"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 p-6 text-white transition-all duration-300 hover:scale-105 hover:shadow-lg"
