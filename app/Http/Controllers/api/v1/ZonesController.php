@@ -46,7 +46,7 @@ class ZonesController extends BaseQueryController
     /**
      * Get zone by GPS coordinates.
      *
-     * Return the zone information for the given WGS84 coordinates.
+     * Return the zone information for the given coordinates.
      *
      * @urlParam lat number required The latitude coordinate. Example: 3.068498
      * @urlParam long number required The longitude coordinate. Example: 101.630263
