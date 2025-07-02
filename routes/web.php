@@ -12,6 +12,10 @@ Route::get('/about', function () {
     return Inertia::render('about');
 })->name('about');
 
+Route::get('/locations', function () {
+    return redirect('https://peta.waktusolat.app/');
+})->name('locations');
+
 Route::get('/health', [DataHealthController::class, 'index'])->name('data-health');
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -20,5 +24,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
+require __DIR__ . '/settings.php';
+require __DIR__ . '/auth.php';
