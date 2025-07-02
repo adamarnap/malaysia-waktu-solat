@@ -1,7 +1,7 @@
 <?php
 
 test('get prayer time by month (no param)', function () {
-    $response = $this->getJson('/api/solat/sgr01');
+    $response = $this->getJson('/solat/sgr01');
 
     $response->assertStatus(200);
 

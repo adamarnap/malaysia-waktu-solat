@@ -1,7 +1,7 @@
 <?php
 
 test('get prayer zones list', function () {
-    $response = $this->get('/api/zones');
+    $response = $this->get('/zones');
 
     $response->assertStatus(200);
 
