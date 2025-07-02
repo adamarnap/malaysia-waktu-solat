@@ -58,10 +58,10 @@ class JadualSolatController extends BaseQueryController
 
         $prayerTimes = $this->mapPrayerTimes($prayerTimes, $timeFormat);
 
-        $title=  'Jadual Waktu Solat';
+        $title = 'Jadual Waktu Solat';
         $zoneDetails = PrayerZone::where('jakim_code', $zone)->first();
 
-        $view = view('jadual_solat.jadual_solat', compact('zoneDetails','title', 'month', 'year', 'orientation', 'prayerTimes'));
+        $view = view('jadual_solat.jadual_solat', compact('zoneDetails', 'title', 'month', 'year', 'orientation', 'prayerTimes'));
         // return $view;
         $dompdf = new Dompdf();
         $dompdf->setPaper('A4', $orientation);
