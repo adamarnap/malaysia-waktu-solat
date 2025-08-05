@@ -39,7 +39,7 @@ jobs:
             # Optimization https://laravel.com/docs/11.x/deployment#optimization
             php artisan optimize:clear 
 
-            npm install 
+            npm install --legacy-peer-deps
             npm run build 
 
             php artisan scribe:generate
