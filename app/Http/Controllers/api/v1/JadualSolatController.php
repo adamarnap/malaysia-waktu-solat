@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\api;
+namespace App\Http\Controllers\api\v1;
 
+use App\Http\Controllers\api\BaseQueryController;
 use App\Models\PrayerZone;
 use Carbon\Carbon;
 use Dompdf\Dompdf;
@@ -10,12 +11,12 @@ use Illuminate\Http\Request;
 /**
  * @group JADUAL SOLAT
  *
- * Download monthly prayer timetable​ in PDF.
+ * Download monthly prayer timetable in PDF.
  */
 class JadualSolatController extends BaseQueryController
 {
     /**
-     * Download monthly prayer timetable​ in PDF.
+     * Download monthly prayer timetable in PDF.
      *
      * Return the prayer times in a specific month for a given zone.
      *
@@ -62,7 +63,7 @@ class JadualSolatController extends BaseQueryController
         $zoneDetails = PrayerZone::where('jakim_code', $zone)->first();
 
         $view = view('jadual_solat.jadual_solat', compact('zoneDetails', 'title', 'month', 'year', 'orientation', 'prayerTimes'));
-        // return $view;
+
         $dompdf = new Dompdf();
         $dompdf->setPaper('A4', $orientation);
 

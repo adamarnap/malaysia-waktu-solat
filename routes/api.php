@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\api\JadualSolatController;
+use App\Http\Controllers\api\v1\JadualSolatController;
 use App\Http\Controllers\api\v1\PrayerTimeV1Contoller;
 use App\Http\Controllers\api\v1\ZonesController;
 use App\Http\Controllers\api\v2\PrayerTimeContoller;
