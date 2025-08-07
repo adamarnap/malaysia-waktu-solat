@@ -28,6 +28,9 @@
         content="Get access to Malaysia prayer times and zones for your app or website. Easy, free and simple." />
     <meta property="twitter:image" content="{{ asset('images/metaimage.png') }}" />
 
+    <!-- Analytics -->
+    <script defer src="https://umami.iqfareez.com/script.js" data-website-id="11df7d3a-fb7e-4bbd-aacb-222515ea7b32"></script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
