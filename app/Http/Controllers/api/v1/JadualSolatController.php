@@ -75,6 +75,9 @@ class JadualSolatController extends BaseQueryController
 
         $dompdf->loadHtml($view->render());
         $dompdf->render();
+
+        // The MyCors middleware wouldn't work in this route, so we're adding it manually here.
+        header("Access-Control-Allow-Origin: *");
         $dompdf->stream('jadual_solat.pdf', ['Attachment' => false]);
     }
 
