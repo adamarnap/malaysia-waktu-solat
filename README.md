@@ -78,6 +78,13 @@ From the second time onwards
 
 - `docker compose up -d`
 
+## Troubleshooting
+
+When error "Failed to Fetch" appear in the Swagger UI. Update the `APP_URL` value in the `.env` file to match the app URL. Example:
+
+```dotenv
+APP_URL=http://127.0.0.1:8000
+```
 ## Architecture
 
 TODO
