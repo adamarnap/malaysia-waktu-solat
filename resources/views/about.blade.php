@@ -13,7 +13,7 @@
             <div class="dark:hidden block absolute top-0 left-0 w-full h-full bg-gradient-to-t from-blue-50 to-white">
             </div>
 
-            <div class="mx-auto flex max-w-7xl flex-col gap-6 px-6 lg:px-24 pt-12">
+            <div class="mx-auto flex max-w-7xl flex-col gap-6 px-6 lg:px-24 pt-12 z-10">
                 <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
                         <a href="/" class="text-blue-600 hover:underline dark:text-blue-400">
