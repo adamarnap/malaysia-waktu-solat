@@ -1,10 +1,12 @@
 ![Laravel](https://img.shields.io/badge/laravel-12-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white)
 
-This service provides prayer times data based on JAKIM.
+<img width="1920" height="540" alt="GitHub API Server Readme Banner" src="https://github.com/user-attachments/assets/4605bb5f-d8b7-41be-8552-b6bb773eb086" />
 
-This is **not** a wrapper for JAKIM's API. Instead, this service fetches prayer times data periodically from JAKIM and stores it in a database.
+# Waktu Solat API / Prayer Time API
 
-Note that this service is **not affiliated** with JAKIM nor endorsed by them in any way.
+This service provides prayer times data for all states in Malaysia. Data is based on JAKIM.
+
+*Disclaimer:* This service is **not affiliated** with JAKIM nor endorsed by them in any way.
 
 ## Getting Started
 
@@ -91,9 +93,14 @@ TODO
 
 ## Motivation
 
-This project was created to provide prayer times data based on JAKIM. The main motivation behind this project is to provide a simple and easy-to-use API for developers who want to integrate prayer times data into their applications.
+In early days of App Waktu Solat API, I rely on API server provided by others. But sometimes, the server got shut down, discontinued, out of date etc. Hence, I think I need to maintain my own server.
 
-This project is a port from the same API application that was written using NextJs: [`api-waktusolat`](https://github.com/mptwaktusolat/api-waktusolat). However, I find that it is more simpler and maintained to use Laravel for this project. Some of the reason is; able to manage database schema effectively using migrations, better file structure, and easier to generate API documentation from code comments. Though we may be able to achieve the same in NextJs, but it require more efforts.
+History of API Server implementation, sorted from latest to oldest:
+1. This API
+2. [MPT Server](https://github.com/mptwaktusolat/api-waktusolat) - _Discontinued_
+3. [MPT Backup API](https://github.com/mptwaktusolat/mpt-backup-api) - _Discontinued_
+
+Wonder why so many changes? [Here's why](https://example.com). (TODO)
 
 ## Deployments
 
