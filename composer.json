@@ -16,6 +16,7 @@
         "graylog2/gelf-php": "^2.0",
         "knuckleswtf/scribe": "^5.1",
         "laravel/framework": "^12.0",
+        "laravel/nightwatch": "^1.12",
         "laravel/telescope": "^5.7",
         "laravel/tinker": "^2.10.1",
         "league/csv": "^9.23"
