@@ -2,9 +2,9 @@
 
 <img width="1920" height="540" alt="GitHub API Server Readme Banner" src="https://github.com/user-attachments/assets/4605bb5f-d8b7-41be-8552-b6bb773eb086" />
 
-# Waktu Solat API / Prayer Time API
+# Malaysia Prayer Time API
 
-This service provides prayer times data for all states in Malaysia. Data is based on JAKIM.
+This service provides prayer times data for all states in Malaysia. Data is based on [E-Solat JAKIM](https://www.e-solat.gov.my/).
 
 *Disclaimer:* This service is **not affiliated** with JAKIM nor endorsed by them in any way.
 
