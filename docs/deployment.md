@@ -273,9 +273,105 @@ And the browser warning is gone.
 
 ![image](https://github.com/user-attachments/assets/dea11ab2-6a55-41d8-b358-9b7497634801)
 
-### 5.2. Add a User
+### 5.2. Setup Logging & Monitoring (Optional)
 
-This step is optional. The application includes Laravel Telescope, a useful tool for debugging and monitoring your application. However, the Telescope route is protected by authentication. You can add a user to access the Telescope dashboard using the following artisan command:
+This section is optional. It is recommended to monitor your service while it is running in production. Historically, this app used [Laravel Telescope](https://github.com/laravel/telescope) before recently adopting [Laravel Nightwatch](https://nightwatch.laravel.com/).
+
+On the surface level, Laravel Telescope runs inside your app. It's free and quick, useful for development or debugging scenarios. Meanwhile, Laravel Nightwatch is a managed service provided by Laravel and could incur some costs.
+
+#### 5.2.1. Setup Laravel Nightwatch
+
+Register your account at https://nightwatch.laravel.com/. Follow the [instructions given](https://nightwatch.laravel.com/docs/getting-started/start-guide) to register your application with Nightwatch.
+
+Update the `.env` file with the Nightwatch token:
+
+```env
+NIGHTWATCH_TOKEN=your_token
+```
+
+Then start the agent:
+
+```bash
+php artisan nightwatch:agent
+```
+
+<img width="759" height="646" alt="Screenshot 2025-08-17 at 6 36 19 AM" src="https://github.com/user-attachments/assets/9e7fb8c2-5a77-4617-aefc-2b8dfcb45e73" />
+
+You should begin to see the dashboard load with some activity from your application, which indicates that your setup is working.
+
+However, for **production** deployment, the [documentation](https://nightwatch.laravel.com/docs/guides/other-providers#running-as-a-systemd-service) suggests running the agent as a systemd service. This will ensure that the agent is always running and automatically restarted if it fails. Follow the following steps:
+
+Stop the previously runnning `php artisan nightwatch:agent`. (Ctrl+C in the terminal)
+
+SSH to the server as the root user:
+
+```bash
+ssh sakinah-root
+```
+
+Create the nightwatch-agent.service file:
+
+```bash
+sudo nano /etc/systemd/system/nightwatch-agent.service
+```
+
+And paste the following file:
+
+```ini
+[Unit]
+Description=Laravel Nightwatch Agent
+After=network.target
+
+[Service]
+Type=simple
+User=waktusolat-api
+Group=waktusolat-api
+WorkingDirectory=/home/waktusolat-api/htdocs/api.waktusolat.app
+ExecStart=/usr/bin/php artisan nightwatch:agent
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Replace `User`, `Group`, and `WorkingDirectory` with the appropriate values for your application. You can determine these values by referring to the image below:
+
+<img width="1017" height="701" alt="Screenshot 2025-08-18 at 3 20 34 PM" src="https://github.com/user-attachments/assets/0b06d7cc-f3b2-425d-885c-4d8afea8be42" />
+
+Save the file. Then run the following commands to start the service.
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable nightwatch-agent
+sudo systemctl start nightwatch-agent
+```
+
+You can check the service status using the command:
+
+```bash
+sudo systemctl status nightwatch-agent
+```
+
+<img width="1369" height="827" alt="Screenshot 2025-08-18 at 3 24 30 PM" src="https://github.com/user-attachments/assets/49bd53af-772a-4bcb-aec6-abd732fbb7c7" />
+
+If everything is green across the board, you have set up the agent correctly. You should check again if the dashboard is receiving data from the agent.
+
+<img width="2032" height="1167" alt="Screenshot 2025-08-18 at 3 46 03 PM" src="https://github.com/user-attachments/assets/33670da3-4549-4f2c-b440-5fc4628dffc6" />
+
+To learn more about Nightwatch, visit the [official documentation](https://nightwatch.laravel.com/docs).
+
+#### 5.2.2. Setup Laravel Telescope
+
+The application includes Laravel Telescope, a useful tool for debugging and monitoring your application.
+
+Enable the Telescope feature by setting the `TELESCOPE_ENABLED` environment variable to `true` in the `.env` file:
+
+```env
+TELESCOPE_ENABLED=true
+```
+
+The Telescope route is protected by authentication. You can add a user to access the Telescope dashboard using the following artisan command:
 
 ```bash
 php artisan app:create-user
