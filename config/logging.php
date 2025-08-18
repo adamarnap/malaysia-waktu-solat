@@ -1,8 +1,5 @@
 <?php
 
-use Gelf\Publisher;
-use Gelf\Transport\UdpTransport;
-use Monolog\Handler\GelfHandler;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
@@ -92,7 +89,7 @@ return [
             'handler_with' => [
                 'host' => env('PAPERTRAIL_URL'),
                 'port' => env('PAPERTRAIL_PORT'),
-                'connectionString' => 'tls://'.env('PAPERTRAIL_URL').':'.env('PAPERTRAIL_PORT'),
+                'connectionString' => 'tls://' . env('PAPERTRAIL_URL') . ':' . env('PAPERTRAIL_PORT'),
             ],
             'processors' => [PsrLogMessageProcessor::class],
         ],
@@ -125,16 +122,6 @@ return [
             'driver' => 'monolog',
             'handler' => NullHandler::class,
         ],
-
-        // TODO: Disable until this is ready
-        // 'graylog' => [
-        //     'driver' => 'monolog',
-        //     'handler' => GelfHandler::class,
-        //     'handler_with' => [
-        //         'publisher' => new Publisher(new UdpTransport(env('GRAYLOG_HOST', '127.0.0.1'), env('GRAYLOG_PORT', 12201))),
-        //     ],
-        //     'formatter' => \Monolog\Formatter\GelfMessageFormatter::class,
-        // ],
 
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),

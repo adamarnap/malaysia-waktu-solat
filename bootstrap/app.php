@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Middleware\HandleAppearance;
-use App\Http\Middleware\LogApiRequests;
 use App\Http\Middleware\MyCors;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -25,7 +24,6 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->api(append: [
             MyCors::class,
-            LogApiRequests::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
