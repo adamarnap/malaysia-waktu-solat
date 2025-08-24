@@ -83,7 +83,11 @@ class PrayerTimeV1Contoller extends BaseQueryController
         $month = $request->input('month', date('m'));
 
         $prayerTimes = $this->queryPrayerTime($zone, $year, $month);
-        $prayerTimes = $this->mapPrayerTimes($prayerTimes)[$day - 1];
+        $mappedPrayerTimes = $this->mapPrayerTimes($prayerTimes);
+        if (!isset($mappedPrayerTimes[$day - 1])) {
+            return response()->json(['error' => 'Invalid day provided.'], 400);
+        }
+        $prayerTimes = $mappedPrayerTimes[$day - 1];
 
         $data = [
             'prayerTime' => $prayerTimes,
