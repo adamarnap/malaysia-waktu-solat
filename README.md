@@ -71,9 +71,6 @@ You can now access the application at `http://localhost:8000`. The api docs will
 
 ### Docker
 
-> [!WARNING]
-> Docker support for development is not fully optimized yet. Sometimes it works and sometimes it doesn't. If you encounter any issues, please open an issue on the GitHub repository. Also, I'm aware about [Laravel Sail](https://laravel.com/docs/12.x/sail), tried it and too many things didn't work. Submit patches please.
-
 For the first time, run the following commands:
 
 - Clone and navigate into the project.
@@ -81,9 +78,22 @@ For the first time, run the following commands:
 - `docker compose exec php bash`
 - `composer setup`
 
+You may need to edit the `.env` file:
+
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=db # use service name instead of local ip
+```
+
+Then, rerun
+- `docker compose exec php bash`
+- `composer setup`
+
 From the second time onwards
 
 - `docker compose up -d`
+
+Reference for Laravel Docker Development: https://github.com/refactorian/laravel-docker
 
 ## Troubleshooting
 
