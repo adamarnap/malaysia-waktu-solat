@@ -18,7 +18,8 @@
         "laravel/nightwatch": "^1.12",
         "laravel/telescope": "^5.7",
         "laravel/tinker": "^2.10.1",
-        "league/csv": "^9.23"
+        "league/csv": "^9.23",
+        "predis/predis": "^3.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -69,7 +70,7 @@
             "php artisan config:cache",
             "php artisan migrate",
             "php artisan db:seed",
-            "php artisan script:generate",
+            "php artisan scribe:generate",
             "npm install",
             "npm run build"
         ],
