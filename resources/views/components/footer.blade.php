@@ -8,6 +8,10 @@
         </a>
     </p>
     <nav class="mt-2 sm:mt-0 sm:ml-auto flex flex-wrap gap-4 sm:gap-6">
+        <a class="text-sm hover:underline underline-offset-4 dark:text-gray-300 dark:hover:text-pink-200"
+            href="https://uptime.iqfareez.com/status/api-waktusolat">
+            Status
+        </a>
         <a class="text-sm hover:underline underline-offset-4 dark:text-gray-300 dark:hover:text-pink-200" href="/about">
             About
         </a>
