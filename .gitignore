@@ -25,3 +25,5 @@ yarn-error.log
 
 # Can be generated using php artisan scribe:generate
 .scribe
+
+laradumps.yaml

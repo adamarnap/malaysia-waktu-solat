@@ -102,6 +102,21 @@ When error "Failed to Fetch" appear in the Swagger UI. Update the `APP_URL` valu
 ```dotenv
 APP_URL=http://127.0.0.1:8000
 ```
+
+## Debugging
+
+This project contains [Laradumps](https://laradumps.dev/) package. LaraDumps is a powerful and user-friendly debugging app.
+
+To use it, first install the Laradumps desktop app from https://laradumps.dev/download.
+
+Then, run the following command:
+
+```bash
+php artisan ds:init $(pwd)
+```
+
+Get further information from the documentation: https://laradumps.dev/debug/introduction.html
+
 ## Architecture
 
 TODO
