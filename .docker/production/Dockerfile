@@ -5,6 +5,7 @@
 # - Multi-stage: build (composer + node) -> runtime
 # - No MySQL, no Nginx (Coolify uses Traefik)
 # - Serves app with: php artisan serve --host=0.0.0.0 --port=8000
+# - Includes entrypoint script for cache clearing and Scribe docs generation
 ###############################################
 
 # ---------- Base image (with build toolchain) ----------
@@ -98,6 +99,10 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 # Copy opcache configuration from base stage
 COPY --from=base /usr/local/etc/php/conf.d/opcache-recommended.ini /usr/local/etc/php/conf.d/opcache-recommended.ini
 
+# Copy entrypoint script
+COPY .docker/production/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
 WORKDIR /var/www/html
 
 COPY --from=build-deps /var/www/html/vendor ./vendor
@@ -118,5 +123,7 @@ ENV APP_ENV=production \
     PORT=8000
 
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD php -r 'exit((@fsockopen("127.0.0.1", getenv("PORT")))?0:1);'
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]

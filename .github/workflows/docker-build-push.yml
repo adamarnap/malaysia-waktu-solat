@@ -11,8 +11,6 @@ on:
   pull_request:
     branches:
       - main
-      - master
-      - production
   workflow_dispatch:
 
 env:
