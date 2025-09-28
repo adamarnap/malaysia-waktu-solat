@@ -89,7 +89,7 @@ RUN apt-get update \
     libicu72 libzip4 libpng16-16 libjpeg62-turbo libfreetype6 \
     libicu-dev libzip-dev libpng-dev libjpeg-dev libfreetype6-dev \
     libonig-dev libxml2-dev pkg-config \
-    ca-certificates curl \
+    ca-certificates curl libfcgi-bin \
     && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions needed for Laravel
@@ -98,6 +98,26 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 
 # Copy opcache configuration from base stage
 COPY --from=base /usr/local/etc/php/conf.d/opcache-recommended.ini /usr/local/etc/php/conf.d/opcache-recommended.ini
+
+# Configure PHP-FPM for production
+RUN { \
+    echo '[global]'; \
+    echo 'error_log = /proc/self/fd/2'; \
+    echo 'daemonize = no'; \
+    echo '[www]'; \
+    echo 'listen = 0.0.0.0:9000'; \
+    echo 'access.log = /proc/self/fd/1'; \
+    echo 'clear_env = no'; \
+    echo 'catch_workers_output = yes'; \
+    echo 'pm = dynamic'; \
+    echo 'pm.max_children = 20'; \
+    echo 'pm.start_servers = 2'; \
+    echo 'pm.min_spare_servers = 1'; \
+    echo 'pm.max_spare_servers = 3'; \
+    echo 'pm.max_requests = 500'; \
+    echo 'pm.status_path = /status'; \
+    echo 'ping.path = /ping'; \
+    } > /usr/local/etc/php-fpm.d/zz-docker.conf
 
 # Copy entrypoint script
 COPY .docker/production/entrypoint.sh /usr/local/bin/entrypoint.sh
@@ -115,15 +135,18 @@ RUN chown -R www-data:www-data storage bootstrap/cache \
     && find storage -type d -exec chmod 775 {} \; \
     && chmod -R 775 bootstrap/cache
 
-EXPOSE 8000
+EXPOSE 9000
 
 ENV APP_ENV=production \
     APP_DEBUG=false \
-    LOG_CHANNEL=stderr \
-    PORT=8000
+    LOG_CHANNEL=stderr
 
-HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD php -r 'exit((@fsockopen("127.0.0.1", getenv("PORT")))?0:1);'
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD \
+    SCRIPT_NAME=/ping \
+    SCRIPT_FILENAME=/ping \
+    REQUEST_METHOD=GET \
+    cgi-fcgi -bind -connect 127.0.0.1:9000 || exit 1
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+CMD ["php-fpm"]
