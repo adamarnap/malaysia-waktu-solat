@@ -4,7 +4,7 @@
 
     <body class="dark:bg-zinc-900 min-h-screen flex flex-col">
         <x-top-banner>
-            <strong>🎉 Latest:</strong> Data for new zone: <strong>PHG07</strong> is now available!
+            <strong>✨ Updated:</strong> Prayer time for the year <strong>2026</strong> is now available!
         </x-top-banner>
 
         <main class="flex items-center justify-center flex-1 flex-col relative overflow-hidden">
