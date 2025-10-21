@@ -98,10 +98,6 @@
                     </ul>
                     <p>
                         Prayer time database is updated periodically from e-solat JAKIM portal.
-                        See fetcher implementation on <a href="https://github.com/mptwaktusolat/waktusolat-fetcher"
-                            class="text-blue-600 dark:text-blue-400 hover:underline">
-                            GitHub
-                        </a>.
                     </p>
                 </div>
             </div>
