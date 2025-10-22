@@ -12,7 +12,7 @@
             class="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-[#ff80b5] to-[#9089fc] opacity-30 dark:from-[#80b5ff] dark:to-[#9089fc] dark:opacity-20">
         </div>
     </div>
-    <p class="text-sm leading-6 text-gray-900 dark:text-gray-200">
+    <p class="text-sm leading-5 text-center text-gray-900 dark:text-gray-200">
         {{ $slot }}
     </p>
 </div>
