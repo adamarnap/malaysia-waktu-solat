@@ -103,6 +103,22 @@ When error "Failed to Fetch" appear in the Swagger UI. Update the `APP_URL` valu
 APP_URL=http://127.0.0.1:8000
 ```
 
+## Testing
+
+Create a `.env.testing` file:
+
+```bash
+cp .env.example .env.testing
+```
+
+Set the database connection to production database. It must run MySQL or other supported database with spatial support.
+
+To run the test suite, execute the following command:
+
+```bash
+php artisan test --env=testing
+```
+
 ## Debugging
 
 This project contains [Laradumps](https://laradumps.dev/) package. LaraDumps is a powerful and user-friendly debugging app.

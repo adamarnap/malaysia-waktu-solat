@@ -50,7 +50,9 @@ jobs:
         run: php artisan key:generate
 
       - name: Run Migrations
-        run: php artisan migrate --seed
+        run: |
+          php artisan migrate --seed
+          php artisan db:import-prayer-times 2026
 
       - name: Create .env.testing based on .env
         run: cp .env .env.testing
