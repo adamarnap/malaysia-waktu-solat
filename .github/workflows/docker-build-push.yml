@@ -2,10 +2,11 @@ name: Build and Push Docker Image
 
 on:
   push:
-    branches:
-      - main
-      - master
-      - production
+    branches: [main]
+    paths-ignore:
+      - 'README.md'
+      - docs/**
+      - tests/**      
     tags:
       - 'v*'
   pull_request:
