@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
  *
  * Get prayer times data for a given zone. Updated endpoint.
  */
-class PrayerTimeContoller extends BaseQueryController
+class PrayerTimeController extends BaseQueryController
 {
     /**
      * v2/Prayer Time
@@ -113,7 +113,7 @@ class PrayerTimeContoller extends BaseQueryController
 
     /**
      * v2/Prayer Time by GPS
-     * 
+     *
      * Deprecated: Use /v2/solat/gps/{lat}/{long} instead. This endpoint has incorrect URL format and will be removed in 2026.
      * Return the prayer times in a specific month with automatic zone detection based on GPS coordinates.
      *
@@ -166,10 +166,10 @@ class PrayerTimeContoller extends BaseQueryController
     /**
      * Map prayer times to the required format
      *
-     * @param  \Illuminate\Support\Collection  $prayerTimes
+     * @param \Illuminate\Support\Collection $prayerTimes
      * @return \Illuminate\Support\Collection
      */
-    private function mapPrayerTimes($prayerTimes)
+    private function mapPrayerTimes(\Illuminate\Support\Collection $prayerTimes)
     {
         return $prayerTimes->map(function ($prayerTime) {
             // Do processing to the Date & Time

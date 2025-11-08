@@ -50,7 +50,7 @@ class FetchWaktuSolatFromSource extends Command
         }
 
         $year = (int) $year;
-        
+
         // Validate year range
         if ($year < 2000 || $year > 2100) {
             $this->error('Year must be between 2000 and 2100.');
@@ -81,7 +81,7 @@ class FetchWaktuSolatFromSource extends Command
 
         foreach ($zones as $zone) {
             $zoneCode = $zone->jakim_code;
-            
+
             // Fetch data for this zone with retry mechanism
             $prayerData = $this->fetchPrayerTimeDataForZone($zoneCode, $dateStart, $dateEnd);
 
@@ -89,7 +89,7 @@ class FetchWaktuSolatFromSource extends Command
                 // Process and store data
                 $processedData = $this->processZoneData($prayerData, $zoneCode, $year);
                 $allData = array_merge($allData, $processedData);
-                
+
                 $this->newLine();
                 $this->info("✓ Successfully fetched {$zoneCode} ({$zone->negeri} - {$zone->daerah})");
             } else {
@@ -138,21 +138,21 @@ class FetchWaktuSolatFromSource extends Command
 
                 if ($response->successful()) {
                     $data = $response->json();
-                    
+
                     if (isset($data['prayerTime']) && is_array($data['prayerTime'])) {
                         return $data['prayerTime'];
                     }
                 }
 
                 $attempt++;
-                
+
                 if ($attempt < self::MAX_RETRIES) {
                     sleep(self::RETRY_DELAY);
                 }
             } catch (Exception $e) {
                 $this->error("Error fetching {$zoneCode}: " . $e->getMessage());
                 $attempt++;
-                
+
                 if ($attempt < self::MAX_RETRIES) {
                     sleep(self::RETRY_DELAY);
                 }
@@ -174,7 +174,7 @@ class FetchWaktuSolatFromSource extends Command
             // Parse the date (format: "01-Jan-2026")
             $date = Carbon::createFromFormat('d-M-Y', $prayer['date']);
             $month = $date->format('m');
-            
+
             // Convert times to Unix timestamps
             $fajar = $this->timeToTimestamp($date, $prayer['fajr']);
             $syuruk = $this->timeToTimestamp($date, $prayer['syuruk']);
@@ -223,7 +223,7 @@ class FetchWaktuSolatFromSource extends Command
     private function writeToCSV(array $data, int $year): string
     {
         $outputPath = resource_path("csv/Dump-output-{$year}.csv");
-        
+
         // Create CSV writer
         $csv = Writer::from($outputPath, 'w');
 

@@ -92,10 +92,10 @@ class JadualSolatController extends BaseQueryController
     /**
      * Map prayer times to the given format
      *
-     * @param  \Illuminate\Support\Collection  $prayerTimes
+     * @param \Illuminate\Support\Collection $prayerTimes
      * @return \Illuminate\Support\Collection
      */
-    private function mapPrayerTimes($prayerTimes, string $timeFormat = 'H:i')
+    private function mapPrayerTimes(\Illuminate\Support\Collection $prayerTimes, string $timeFormat = 'H:i')
     {
         return $prayerTimes->map(function ($prayerTime) use ($timeFormat) {
             // Do processing to the Date & Time
