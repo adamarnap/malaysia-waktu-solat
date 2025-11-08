@@ -17,22 +17,44 @@ class PrayerTimeSeeder extends Seeder
      */
     public function run()
     {
-        # Increase memory limit for this script. You can adjust as needed.
+        # Increase memory limit for this script.
         ini_set('memory_limit','256M');
         $this->command->info('Seeding prayer times from CSV...');
 
-        // Path to your CSV file
-        // Source of Dump-output.csv: https://github.com/mptwaktusolat/firestore_exporter
-        $csvPath = resource_path('csv/Dump-output.csv');
+        // Paths to the prayer times CSV files
+        $csvPaths = [
+            // Source of Dump-output-2023-2025.csv: https://github.com/mptwaktusolat/firestore_exporter
+            resource_path('csv/Dump-output-2023-2025.csv'),
+            // Add new CSV files for each year below. Read more on docs/update-data-from-esolat/README.md
+            resource_path('csv/Dump-output-2026.csv'),
+        ];
 
-        if (! file_exists($csvPath)) {
-            $this->command->error('CSV file not found: '.$csvPath);
+        $totalProcessed = 0;
 
-            return;
+        foreach ($csvPaths as $csvPath) {
+            if (! file_exists($csvPath)) {
+                $this->command->warn("CSV file not found, skipping: $csvPath");
+                continue;
+            }
+
+            $this->command->info("Processing file: $csvPath");
+            $count = $this->processCsvFile($csvPath);
+            $totalProcessed += $count;
         }
 
+        $this->command->info("Total prayer time records seeded: $totalProcessed");
+    }
+
+    /**
+     * Process a single CSV file
+     *
+     * @param string $csvPath
+     * @return int Number of records processed
+     */
+    private function processCsvFile(string $csvPath)
+    {
         // Create a CSV Reader instance
-        $csv = Reader::createFromPath($csvPath, 'r');
+        $csv = Reader::from($csvPath, 'r');
         $csv->setHeaderOffset(0); // Set the header offset
 
         $records = $csv->getRecords();
@@ -41,7 +63,6 @@ class PrayerTimeSeeder extends Seeder
         $batch = [];
         $now = now()->format('Y-m-d H:i:s'); // Cache the timestamp
 
-        // Start transaction for better performance
         DB::beginTransaction();
 
         try {
@@ -49,6 +70,7 @@ class PrayerTimeSeeder extends Seeder
                 // Extract the day from the timestamp (e.g., fajar) and create a date
                 $date = Carbon::createFromTimestamp((int) $record['fajar'], 'Asia/Kuala_Lumpur')->toDateString();
                 $hijriDate = $record['tarikh_hijri'];
+                $locationCode = $record['zone'];
 
                 // Convert Unix timestamps to time format
                 $fajr = $this->timestampToTimeString($record['fajar']);
@@ -60,7 +82,7 @@ class PrayerTimeSeeder extends Seeder
 
                 $batch[] = [
                     'date' => $date,
-                    'location_code' => $record['zone'],
+                    'location_code' => $locationCode,
                     'hijri' => $hijriDate,
                     'fajr' => $fajr,
                     'syuruk' => $syuruk,
@@ -78,7 +100,7 @@ class PrayerTimeSeeder extends Seeder
                 if (count($batch) >= $batchSize) {
                     DB::table('prayer_times')->insert($batch);
                     $batch = []; // Reset batch
-                    $this->command->info("Processed $count records...");
+                    $this->command->info("  Processed $count records...");
                 }
             }
 
@@ -88,29 +110,35 @@ class PrayerTimeSeeder extends Seeder
             }
 
             DB::commit();
-            $this->command->info("Successfully seeded $count prayer time records.");
+            $this->command->info("  Successfully seeded $count new records from this file.");
 
         } catch (\Exception $e) {
             DB::rollBack();
 
-            $this->command->error('Error seeding prayer times: '.$e->getMessage());
-            $this->command->error('Line: '.$e->getLine());
-            $this->command->error('File: '.$e->getFile());
+            $this->command->error('Error seeding prayer times.');
+            
+            $errorCode = $e->getCode();
+            if ($errorCode == 23000) {
+                $this->command->warn("Error code {$errorCode} indicates duplicate key violation. Existing records may already be present.");
+            } else {
+                $this->command->error("Error code: {$errorCode}");
+                $this->command->error("Message: {$e->getMessage()}");
+            }
         }
     }
 
     /**
      * Convert Unix timestamp to time string (H:i:s format)
      *
-     * @param  string|int  $timestamp
-     * @return string
+     * @param int $timestamp
+     * @return string|null The Time string. Example "05:30:00"
      */
-    private function timestampToTimeString($timestamp)
+    private function timestampToTimeString(int $timestamp): ?string
     {
         if (empty($timestamp)) {
             return null;
         }
 
-        return Carbon::createFromTimestamp((int) $timestamp, 'Asia/Kuala_Lumpur')->format('H:i:s');
+        return Carbon::createFromTimestamp($timestamp, 'Asia/Kuala_Lumpur')->format('H:i:s');
     }
 }
