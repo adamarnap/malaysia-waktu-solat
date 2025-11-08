@@ -16,7 +16,7 @@
             <div class="dark:hidden block absolute top-0 left-0 w-full h-full bg-gradient-to-t from-blue-50 to-white">
             </div>
 
-            <section class="w-full py-6 sm:py-12 md:py-24 lg:py-32 xl:py-48 relative z-10">
+            <section class="w-full py-12 relative z-10">
                 <div class="px-4 md:px-6">
                     <div class="flex flex-col space-y-8 text-center">
                         <div class="space-y-6">
@@ -51,6 +51,40 @@
                                 class="inline-flex h-9 items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 sm:px-6 sm:py-4 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-pink-500 dark:bg-transparent dark:text-pink-300 dark:hover:bg-pink-500/10 dark:hover:text-pink-200 dark:focus-visible:ring-pink-300">
                                 Data health
                             </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {{-- Trusted by section --}}
+            <section class="w-full py-12 md:py-16 relative z-10">
+                <div class="px-4 md:px-6">
+                    <div class="flex flex-col items-center space-y-8">
+                        <h2 class="text-sm font-semibold tracking-wide uppercase text-gray-500 dark:text-gray-400">
+                            Trusted by
+                        </h2>
+                        <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 max-w-4xl">
+                            {{-- Company Logos --}}
+                            <div
+                                class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-200 grayscale hover:grayscale-0">
+                                <img src="{{ asset('images/companies/asar-logo.png') }}" alt="ASAR"
+                                    class="h-12 w-auto object-contain">
+                            </div>
+                            <div
+                                class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-200 grayscale hover:grayscale-0">
+                                <img src="{{ asset('images/companies/masjid-buntal.png') }}" alt="Masjid Buntal"
+                                    class="h-12 w-auto object-contain">
+                            </div>
+                            <div
+                                class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-200 grayscale hover:grayscale-0">
+                                <img src="{{ asset('images/companies/masjid-pangkor-terapung.png') }}"
+                                    alt="Masjid Pangkor Terapung" class="h-12 w-auto object-contain">
+                            </div>
+                            <div
+                                class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-200 grayscale hover:grayscale-0">
+                                <img src="{{ asset('images/companies/pahanggo.png') }}" alt="PahangGo"
+                                    class="h-12 w-auto object-contain">
+                            </div>
                         </div>
                     </div>
                 </div>
