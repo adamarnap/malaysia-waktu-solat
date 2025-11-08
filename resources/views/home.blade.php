@@ -63,27 +63,27 @@
                         <h2 class="text-sm font-semibold tracking-wide uppercase text-gray-500 dark:text-gray-400">
                             Trusted by
                         </h2>
-                        <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 max-w-4xl">
+                        <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-8 md:gap-12 max-w-4xl">
                             {{-- Company Logos --}}
                             <div
                                 class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-200 grayscale hover:grayscale-0">
                                 <img src="{{ asset('images/companies/asar-logo.png') }}" alt="ASAR"
-                                    class="h-12 w-auto object-contain">
+                                    class="h-6 sm:h-8 md:h-12 w-auto object-contain">
                             </div>
                             <div
                                 class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-200 grayscale hover:grayscale-0">
                                 <img src="{{ asset('images/companies/masjid-buntal.png') }}" alt="Masjid Buntal"
-                                    class="h-12 w-auto object-contain">
+                                    class="h-6 sm:h-8 md:h-12 w-auto object-contain">
                             </div>
                             <div
                                 class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-200 grayscale hover:grayscale-0">
                                 <img src="{{ asset('images/companies/masjid-pangkor-terapung.png') }}"
-                                    alt="Masjid Pangkor Terapung" class="h-12 w-auto object-contain">
+                                    alt="Masjid Pangkor Terapung" class="h-6 sm:h-8 md:h-12 w-auto object-contain">
                             </div>
                             <div
                                 class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-200 grayscale hover:grayscale-0">
                                 <img src="{{ asset('images/companies/pahanggo.png') }}" alt="PahangGo"
-                                    class="h-12 w-auto object-contain">
+                                    class="h-6 sm:h-8 md:h-12 w-auto object-contain">
                             </div>
                         </div>
                     </div>
