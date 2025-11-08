@@ -66,26 +66,34 @@
                         <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-8 md:gap-12 max-w-4xl">
                             {{-- Company Logos --}}
                             <div
-                                class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-200 grayscale hover:grayscale-0">
+                                class="flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-200 grayscale hover:grayscale-0 dark:opacity-50 dark:hover:opacity-100 dark:brightness-0 dark:invert dark:hover:brightness-100 dark:hover:invert-0">
                                 <img src="{{ asset('images/companies/asar-logo.png') }}" alt="ASAR"
                                     class="h-6 sm:h-8 md:h-12 w-auto object-contain">
                             </div>
                             <div
-                                class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-200 grayscale hover:grayscale-0">
+                                class="flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-200 grayscale hover:grayscale-0 dark:opacity-50 dark:hover:opacity-100 dark:brightness-0 dark:invert dark:hover:brightness-100 dark:hover:invert-0">
                                 <img src="{{ asset('images/companies/masjid-buntal.png') }}" alt="Masjid Buntal"
                                     class="h-6 sm:h-8 md:h-12 w-auto object-contain">
                             </div>
                             <div
-                                class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-200 grayscale hover:grayscale-0">
+                                class="flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-200 grayscale hover:grayscale-0 dark:opacity-50 dark:hover:opacity-100 dark:brightness-0 dark:invert dark:hover:brightness-100 dark:hover:invert-0">
                                 <img src="{{ asset('images/companies/masjid-pangkor-terapung.png') }}"
                                     alt="Masjid Pangkor Terapung" class="h-6 sm:h-8 md:h-12 w-auto object-contain">
                             </div>
                             <div
-                                class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-200 grayscale hover:grayscale-0">
+                                class="flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-200 grayscale hover:grayscale-0 dark:opacity-50 dark:hover:opacity-100 dark:brightness-0 dark:invert dark:hover:brightness-100 dark:hover:invert-0">
                                 <img src="{{ asset('images/companies/pahanggo.png') }}" alt="PahangGo"
                                     class="h-6 sm:h-8 md:h-12 w-auto object-contain">
                             </div>
                         </div>
+                        <p class="text-sm text-gray-400 dark:text-gray-500">
+                            and many more...
+                            {{-- TODO: Add option for people add their company/org/project --}}
+                            {{-- (<a href="https://github.com/mptwaktusolat/api-waktusolat-x" target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-xs text-pink-500 hover:text-pink-400 dark:text-pink-400 dark:hover:text-pink-300 underline">add
+                                yours</a>) --}}
+                        </p>
                     </div>
                 </div>
             </section>
