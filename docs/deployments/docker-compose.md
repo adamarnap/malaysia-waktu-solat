@@ -60,6 +60,7 @@ Access the app container:
 
 ```bash
 docker compose exec app sh
+cd /var/www/html
 ```
 
 Run the migration and seeder:
