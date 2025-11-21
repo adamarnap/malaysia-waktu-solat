@@ -17,6 +17,7 @@ services:
       - APP_URL=${APP_URL}
       - APP_ENV=${APP_ENV}
       - APP_DEBUG=${APP_DEBUG}
+      - FORCE_HTTPS=${FORCE_HTTPS}
       - DB_CONNECTION=mysql
       - DB_HOST=db
       - DB_PORT=3306
@@ -44,6 +45,7 @@ APP_KEY=
 APP_URL=
 APP_ENV=
 APP_DEBUG=
+FORCE_HTTPS=false
 ```
 
 See the [Environment Variables](#environment-variables) section below for more details.
@@ -85,8 +87,9 @@ The environment variables details are as follows:
 |----------------|--------------------------------------------------|
 | APP_KEY        | Application key for encryption. Run `php artisan key:generate --show` to create one, or use any online tool. |                 |
 | APP_URL        | The base URL of the application. Used to generate the swagger documentation.                 |
-| APP_ENV       | The application environment (e.g., `local`, `production`). Using `production` will force http URLs to use HTTPS  |
+| APP_ENV       | The application environment (e.g., `local`, `production`).  |
 | APP_DEBUG     | Enable or disable debug mode (`true` or `false`). If first time setting up, it might be helpful to set to `true` to see any errors. |
+| FORCE_HTTPS   | Force all URLs to use HTTPS scheme (`true` or `false`). Set to `true` in production. |
 
 Additional environment variables provided by the image can be found here: https://serversideup.net/open-source/docker-php/docs/reference/environment-variable-specification.
 
