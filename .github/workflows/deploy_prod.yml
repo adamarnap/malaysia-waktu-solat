@@ -15,9 +15,6 @@ jobs:
     runs-on: ubuntu-slim
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
       # Login to Server via SSH and run deploy script to deploy
       - name: Deploy to production server
         uses: appleboy/ssh-action@v1
@@ -35,12 +32,12 @@ jobs:
             cd htdocs/api.waktusolat.app
 
             git pull
-            composer install
+            composer install --no-dev --optimize-autoloader
 
             # Optimization https://laravel.com/docs/11.x/deployment#optimization
             php artisan optimize:clear 
 
-            npm install
+            npm ci
             npm run build 
 
             php artisan scribe:generate
