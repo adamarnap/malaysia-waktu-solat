@@ -24,8 +24,9 @@ class PrayerTimeSeeder extends Seeder
         // Paths to the prayer times CSV files
         $csvPaths = [
             // Source of Dump-output-2023-2025.csv: https://github.com/mptwaktusolat/firestore_exporter
-            resource_path('csv/Dump-output-2023-2025.csv'),
+            // resource_path('csv/Dump-output-2023-2025.csv'),
             // Add new CSV files for each year below. Read more on docs/update-data-from-esolat/README.md
+            resource_path('csv/Dump-output-2025.csv'),
             resource_path('csv/Dump-output-2026.csv'),
         ];
 
@@ -100,7 +101,7 @@ class PrayerTimeSeeder extends Seeder
 
                 // Insert batch when it reaches the batch size
                 if (count($batch) >= $batchSize) {
-                    DB::table('prayer_times')->insert($batch);
+                    DB::table('prayer_times')->insertOrIgnore($batch);
                     $batch = []; // Reset batch
                     $this->command->info("  Processed $count records...");
                 }
@@ -108,7 +109,7 @@ class PrayerTimeSeeder extends Seeder
 
             // Insert any remaining records in the batch
             if (! empty($batch)) {
-                DB::table('prayer_times')->insert($batch);
+                DB::table('prayer_times')->insertOrIgnore($batch);
             }
 
             DB::commit();

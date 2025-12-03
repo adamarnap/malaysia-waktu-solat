@@ -78,14 +78,14 @@ class ImportPrayerTimesFromCSV extends Command
                 $progressBar->advance();
 
                 if (count($batch) >= $batchSize) {
-                    DB::table('prayer_times')->insert($batch);
+                    DB::table('prayer_times')->insertOrIgnore($batch);
                     $batch = [];
                 }
             }
 
             // Insert remaining records
             if (!empty($batch)) {
-                DB::table('prayer_times')->insert($batch);
+                DB::table('prayer_times')->insertOrIgnore($batch);
             }
 
             DB::commit();
