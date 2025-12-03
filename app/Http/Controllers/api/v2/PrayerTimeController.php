@@ -178,6 +178,7 @@ class PrayerTimeController extends BaseQueryController
                 'day' => Carbon::parse($prayerTime->date)->day,
                 'hijri' => $prayerTime->hijri,
                 'fajr' => $this->parseToTimestamp($prayerTime->date, $prayerTime->fajr),
+                'imsak' => $this->parseToTimestamp($prayerTime->date, $prayerTime->imsak),
                 'syuruk' => $this->parseToTimestamp($prayerTime->date, $prayerTime->syuruk),
                 'dhuhr' => $this->parseToTimestamp($prayerTime->date, $prayerTime->dhuhr),
                 'asr' => $this->parseToTimestamp($prayerTime->date, $prayerTime->asr),

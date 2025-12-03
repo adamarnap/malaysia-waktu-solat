@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('location_code');
             $table->string('hijri')->nullable();
             $table->time('fajr')->nullable();
+            $table->time('imsak')->nullable();
             $table->time('syuruk')->nullable();
             $table->time('dhuhr')->nullable();
             $table->time('asr')->nullable();

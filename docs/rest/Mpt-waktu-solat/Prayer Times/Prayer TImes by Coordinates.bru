@@ -1,0 +1,26 @@
+meta {
+  name: Prayer TImes by Coordinates
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{url}}/v2/solat/gps/:lat/:long?year=2026&month=6
+  body: none
+  auth: inherit
+}
+
+params:query {
+  year: 2026
+  month: 6
+}
+
+params:path {
+  long: 101.7965089 
+  lat: 2.8041967
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

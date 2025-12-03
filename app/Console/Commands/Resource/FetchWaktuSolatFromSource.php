@@ -177,6 +177,7 @@ class FetchWaktuSolatFromSource extends Command
 
             // Convert times to Unix timestamps
             $fajar = $this->timeToTimestamp($date, $prayer['fajr']);
+            $imsak = $this->timeToTimestamp($date, $prayer['imsak']);
             $syuruk = $this->timeToTimestamp($date, $prayer['syuruk']);
             $zohor = $this->timeToTimestamp($date, $prayer['dhuhr']);
             $asar = $this->timeToTimestamp($date, $prayer['asr']);
@@ -189,6 +190,7 @@ class FetchWaktuSolatFromSource extends Command
                 'month' => $month,
                 'tarikh_hijri' => $prayer['hijri'],
                 'fajar' => $fajar,
+                'imsak' => $imsak,
                 'syuruk' => $syuruk,
                 'zohor' => $zohor,
                 'asar' => $asar,
@@ -228,7 +230,7 @@ class FetchWaktuSolatFromSource extends Command
         $csv = Writer::from($outputPath, 'w');
 
         // Write header
-        $headers = ['zone', 'year', 'month', 'tarikh_hijri', 'fajar', 'syuruk', 'zohor', 'asar', 'maghrib', 'isyak', 'updated_date', 'created_date'];
+        $headers = ['zone', 'year', 'month', 'tarikh_hijri', 'fajar', 'imsak', 'syuruk', 'zohor', 'asar', 'maghrib', 'isyak', 'updated_date', 'created_date'];
         $csv->insertOne($headers);
 
         // Write data rows

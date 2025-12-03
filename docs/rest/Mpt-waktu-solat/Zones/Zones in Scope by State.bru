@@ -1,0 +1,20 @@
+meta {
+  name: Zones in Scope by State
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/zones/:state
+  body: none
+  auth: inherit
+}
+
+params:path {
+  state: prk
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

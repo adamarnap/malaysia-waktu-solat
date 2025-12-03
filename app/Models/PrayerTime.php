@@ -8,7 +8,7 @@ class PrayerTime extends Model
 {
     protected $fillable = [
         'date', 'location_code', 'hijri',
-        'fajr', 'syuruk', 'dhuhr', 'asr', 'maghrib', 'isha',
+        'fajr', 'imsak', 'syuruk', 'dhuhr', 'asr', 'maghrib', 'isha',
     ];
 
     /**
@@ -17,7 +17,7 @@ class PrayerTime extends Model
      * @var array
      */
     protected $visible = [
-        'date', 'hijri', 'fajr', 'syuruk', 'dhuhr', 'asr', 'maghrib', 'isha',
+        'date', 'hijri', 'fajr', 'imsak', 'syuruk', 'dhuhr', 'asr', 'maghrib', 'isha',
     ];
 
     /**

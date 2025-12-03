@@ -1,0 +1,25 @@
+meta {
+  name: Prayer Times by Zone
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/v2/solat/:zone?year=2026&month=12
+  body: none
+  auth: inherit
+}
+
+params:query {
+  year: 2026
+  month: 12
+}
+
+params:path {
+  zone: sgr01
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

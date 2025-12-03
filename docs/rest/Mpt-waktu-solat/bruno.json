@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Mpt-waktu-solat",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

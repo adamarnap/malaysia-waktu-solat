@@ -74,6 +74,7 @@ class PrayerTimeSeeder extends Seeder
 
                 // Convert Unix timestamps to time format
                 $fajr = $this->timestampToTimeString($record['fajar']);
+                $imsak = $this->timestampToTimeString($record['imsak']);
                 $syuruk = $this->timestampToTimeString($record['syuruk']);
                 $dhuhr = $this->timestampToTimeString($record['zohor']);
                 $asr = $this->timestampToTimeString($record['asar']);
@@ -85,6 +86,7 @@ class PrayerTimeSeeder extends Seeder
                     'location_code' => $locationCode,
                     'hijri' => $hijriDate,
                     'fajr' => $fajr,
+                    'imsak' => $imsak,
                     'syuruk' => $syuruk,
                     'dhuhr' => $dhuhr,
                     'asr' => $asr,
